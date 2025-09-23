@@ -11,7 +11,7 @@ import SwiftUI
 struct BitcoinyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PriceList.view
         }
     }
 }

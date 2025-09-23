@@ -1,7 +1,5 @@
-struct PricesDto: Decodable {
-    let prices: PriceDto
-}
+import Foundation
 
-struct PriceDto: Decodable {
-    let data: [Int]
+struct PricesDto: Decodable {
+    let prices: [[Decimal]]
 }

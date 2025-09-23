@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PriceListView: View {
     @StateObject private var viewModel: PriceListViewModel
+    @State private var selectedPrice: PriceInfo? = nil
     
     init(viewModel: PriceListViewModel = .init()) {
         self._viewModel = StateObject(wrappedValue: viewModel)
@@ -17,7 +18,6 @@ struct PriceListView: View {
                     ProgressView()
                 case .loaded(let prices):
                     pricesView(with: prices)
-                        .shadow(radius: 4.0)
                 case .noPrices:
                     emptyResultView
                 case .error:
@@ -30,15 +30,21 @@ struct PriceListView: View {
         .onAppear {
             viewModel.sendEvent(.onAppear)
         }
+        .onDisappear {
+            selectedPrice = nil
+        }
+        .onChange(of: selectedPrice) {
+            if let selectedPrice = $0 {
+                viewModel.sendEvent(.onSelectPrice(selectedPrice))
+            }
+        }
     }
     
     @ViewBuilder
     private func pricesView(with prices: [PriceInfo]) -> some View {
-        List(prices, id: \.id) { price in
-            PriceView(price: price)
-                .listRowInsets(EdgeInsets())
+        List(prices, id: \.self, selection: $selectedPrice) {
+            PriceView(price: $0)
         }
-        .scrollContentBackground(.hidden)
     }
     
     private var emptyResultView: some View {

@@ -7,17 +7,19 @@ struct PriceInfo {
 
 extension PriceInfo: Identifiable, Hashable {
     var id: String {
-        //TODO: - check if the value is unique
         date.description
     }
 }
 
-
-
 extension PriceInfo {
-    init(from dto: PriceDto) {
-        self.date = .now
-        self.value = 1.0
+    init(from values: [Decimal]) {
+        let doubleTimeInterval = ((values.first ?? 0.0) as NSDecimalNumber).doubleValue / 1000
+        self.date = Date(timeIntervalSince1970: doubleTimeInterval)
+        self.value = values.last ?? 0.0
+   }
+    
+    var displayDate: String {
+        DateFormatter.medium.string(from: date)
     }
 }
 

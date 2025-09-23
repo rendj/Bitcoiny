@@ -17,6 +17,19 @@ final class PriceListRepository: PriceListRepositoryProtocol {
     }
     
     func prices() async throws -> [PriceInfo] {
-        []
+        let pricesData = try await networkService.fetch(.prices)
+        do {
+            let pricesDto = try jsonDecoder.decode(PricesDto.self, from: pricesData)
+            return pricesDto
+                .prices
+                .map {
+                    PriceInfo(from: $0)
+                }
+                .sorted {
+                    $0.date > $1.date
+                }
+        } catch {
+            throw JSONDecodingError.dataInconsistency(error.localizedDescription)
+        }
     }
 }
