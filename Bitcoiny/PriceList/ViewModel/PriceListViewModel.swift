@@ -4,23 +4,29 @@ import Foundation
 final class PriceListViewModel: ObservableObject {
     enum Event {
         case onAppear
-        case onSelectPrice(PriceInfo)
+        case onSelectPrice(Price)
+        case onDisappear
     }
     
     enum State: Equatable {
         case idle
         case loading
-        case loaded([PriceInfo])
+        case loaded([Price])
         case noPrices
         case error
     }
     
     private let priceListRepository: PriceListRepositoryProtocol
+    private let realtimePriceRepository: RealtimePriceRepositoryProtocol
     
     @Published var state: State = .idle
     
-    init(priceListRepository: PriceListRepositoryProtocol = PriceListRepository()) {
+    init(
+        priceListRepository: PriceListRepositoryProtocol = PriceListRepository(),
+        realtimePriceRepository: RealtimePriceRepositoryProtocol = RealtimePriceRepository()
+    ) {
         self.priceListRepository = priceListRepository
+        self.realtimePriceRepository = realtimePriceRepository
     }
     
     func sendEvent(_ event: Event) {
@@ -29,6 +35,8 @@ final class PriceListViewModel: ObservableObject {
             fetchPrices()
         case .onSelectPrice(_):
             break
+        case .onDisappear:
+            unsubscribeFromRealtimeUpdates()
         }
     }
     
@@ -44,10 +52,27 @@ final class PriceListViewModel: ObservableObject {
                     state = .noPrices
                 } else {
                     state = .loaded(prices)
+                    subscribeForRealtimeUpdates()
                 }
             } catch {
                 state = .error
             }
         }
+    }
+    
+    private func subscribeForRealtimeUpdates() {
+        realtimePriceRepository.start { recentPrice in
+            Task { @MainActor in
+                if case .loaded(var loadedPrices) = self.state {
+                    loadedPrices.removeFirst()
+                    loadedPrices.insert(recentPrice, at: 0)
+                    self.state = .loaded(loadedPrices)
+                }
+            }
+        }
+    }
+    
+    private func unsubscribeFromRealtimeUpdates() {
+        realtimePriceRepository.stop()
     }
 }

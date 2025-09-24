@@ -2,9 +2,9 @@ import SwiftUI
 
 struct PriceView: View {
     private let iconHeight: Double = 40.0
-    private let price: PriceInfo
+    private let price: Price
     
-    init(price: PriceInfo) {
+    init(price: Price) {
         self.price = price
     }
     

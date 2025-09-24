@@ -1,5 +1,5 @@
 extension Endpoint {
-    static var prices: Endpoint {
+    static func prices(days: Int = 14) -> Endpoint {
         Endpoint(
             method: .get,
             path: "/api/v3/coins/bitcoin/market_chart",
@@ -8,7 +8,7 @@ extension Endpoint {
             query: [
                 "vs_currency": "eur",
                 "interval": "daily",
-                "days": "14"
+                "days": String(days)
             ]
         )
     }

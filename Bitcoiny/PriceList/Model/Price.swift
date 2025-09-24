@@ -1,17 +1,17 @@
 import Foundation
 
-struct PriceInfo {
+struct Price {
     let date: Date
     let value: Decimal
 }
 
-extension PriceInfo: Identifiable, Hashable {
+extension Price: Identifiable, Hashable {
     var id: String {
         date.description
     }
 }
 
-extension PriceInfo {
+extension Price {
     init(from values: [Decimal]) {
         let doubleTimeInterval = ((values.first ?? 0.0) as NSDecimalNumber).doubleValue / 1000
         self.date = Date(timeIntervalSince1970: doubleTimeInterval)
@@ -23,8 +23,8 @@ extension PriceInfo {
     }
 }
 
-extension PriceInfo {
-    static let preview = PriceInfo(
+extension Price {
+    static let preview = Price(
         date: .now,
         value: 10000.99999
     )

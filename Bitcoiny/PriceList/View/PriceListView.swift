@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PriceListView: View {
     @StateObject private var viewModel: PriceListViewModel
-    @State private var selectedPrice: PriceInfo? = nil
+    @State private var selectedPrice: Price? = nil
     
     init(viewModel: PriceListViewModel = .init()) {
         self._viewModel = StateObject(wrappedValue: viewModel)
@@ -32,6 +32,7 @@ struct PriceListView: View {
         }
         .onDisappear {
             selectedPrice = nil
+            viewModel.sendEvent(.onDisappear)
         }
         .onChange(of: selectedPrice) {
             if let selectedPrice = $0 {
@@ -41,7 +42,7 @@ struct PriceListView: View {
     }
     
     @ViewBuilder
-    private func pricesView(with prices: [PriceInfo]) -> some View {
+    private func pricesView(with prices: [Price]) -> some View {
         List(prices, id: \.self, selection: $selectedPrice) {
             PriceView(price: $0)
         }

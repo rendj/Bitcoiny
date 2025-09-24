@@ -1,7 +1,7 @@
 import Foundation
 
 protocol PriceListRepositoryProtocol {
-    func prices() async throws -> [PriceInfo]
+    func prices() async throws -> [Price]
 }
 
 final class PriceListRepository: PriceListRepositoryProtocol {
@@ -16,14 +16,14 @@ final class PriceListRepository: PriceListRepositoryProtocol {
         self.jsonDecoder = jsonDecoder
     }
     
-    func prices() async throws -> [PriceInfo] {
-        let pricesData = try await networkService.fetch(.prices)
+    func prices() async throws -> [Price] {
+        let pricesData = try await networkService.fetch(.prices())
         do {
             let pricesDto = try jsonDecoder.decode(PricesDto.self, from: pricesData)
             return pricesDto
                 .prices
                 .map {
-                    PriceInfo(from: $0)
+                    Price(from: $0)
                 }
                 .sorted {
                     $0.date > $1.date
