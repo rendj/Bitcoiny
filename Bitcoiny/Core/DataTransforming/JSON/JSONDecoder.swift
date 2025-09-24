@@ -1,6 +1,7 @@
 import Foundation
 
 protocol JSONDecoderProtocol {
+    var keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy { get set }
     func decode<T>(
         _ type: T.Type,
         from data: Data

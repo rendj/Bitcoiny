@@ -29,6 +29,10 @@ final class PriceListViewModel: ObservableObject {
         self.realtimePriceRepository = realtimePriceRepository
     }
     
+    var screenTitle: String {
+        String(localized: "Bitcoin prices")
+    }
+    
     func sendEvent(_ event: Event) {
         switch event {
         case .onAppear:

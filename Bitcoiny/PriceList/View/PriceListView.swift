@@ -2,7 +2,6 @@ import SwiftUI
 
 struct PriceListView: View {
     @StateObject private var viewModel: PriceListViewModel
-    @State private var selectedPrice: Price? = nil
     
     init(viewModel: PriceListViewModel = .init()) {
         self._viewModel = StateObject(wrappedValue: viewModel)
@@ -24,27 +23,22 @@ struct PriceListView: View {
                     errorView
                 }
             }
-            .navigationTitle(Strings.defaultTitle)
+            .navigationTitle(viewModel.screenTitle)
             .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {
             viewModel.sendEvent(.onAppear)
         }
-        .onDisappear {
-            selectedPrice = nil
-            viewModel.sendEvent(.onDisappear)
-        }
-        .onChange(of: selectedPrice) {
-            if let selectedPrice = $0 {
-                viewModel.sendEvent(.onSelectPrice(selectedPrice))
-            }
-        }
     }
     
     @ViewBuilder
     private func pricesView(with prices: [Price]) -> some View {
-        List(prices, id: \.self, selection: $selectedPrice) {
-            PriceView(price: $0)
+        List(prices, id: \.self) { price in
+            NavigationLink {
+                PriceDetails.view(for: price)
+            } label: {
+                PriceView(price: price)
+            }
         }
     }
     

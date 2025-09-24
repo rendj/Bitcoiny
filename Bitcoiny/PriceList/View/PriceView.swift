@@ -15,15 +15,15 @@ struct PriceView: View {
                 .resizable()
                 .frame(width: iconHeight, height: iconHeight)
             VStack(alignment: .leading) {
-                Text(price.value.formatted(.currency(code: "EUR")))
+                Text(
+                    price.value.formatted(.currency(code: Currency.EUR.rawValue))
+                )
                     .font(.headline)
                 Text(price.displayDate)
                     .font(.subheadline)
                     .foregroundStyle(.gray)
             }
             Spacer()
-            Image(systemName: "chevron.right")
-                .foregroundStyle(.gray)
         }
     }
 }
