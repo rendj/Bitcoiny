@@ -26,6 +26,7 @@
 		B5906A042E82AD4500B11545 /* Exceptions for "Bitcoiny" folder in "Bitcoiny" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Bitcoiny.xctestplan,
 				Info.plist,
 			);
 			target = B59069C52E82A42600B11545 /* Bitcoiny */;
@@ -404,7 +405,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rendj.BitcoinyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -422,7 +423,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rendj.BitcoinyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

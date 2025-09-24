@@ -4,7 +4,6 @@ import Foundation
 final class PriceListViewModel: ObservableObject {
     enum Event {
         case onAppear
-        case onSelectPrice(Price)
         case onDisappear
     }
     
@@ -37,8 +36,6 @@ final class PriceListViewModel: ObservableObject {
         switch event {
         case .onAppear:
             fetchPrices()
-        case .onSelectPrice(_):
-            break
         case .onDisappear:
             unsubscribeFromRealtimeUpdates()
         }

@@ -1,7 +1,7 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func fetch(_ endpoint: Endpoint) async throws(NetworkServiceError) -> Data
+    func fetch(_ endpoint: Endpoint) async throws -> Data
 }
 
 final class NetworkService: NetworkServiceProtocol {
@@ -19,7 +19,7 @@ final class NetworkService: NetworkServiceProtocol {
         self.requestBuilder = requestBuilder
     }
     
-    func fetch(_ endpoint: Endpoint) async throws(NetworkServiceError) -> Data {
+    func fetch(_ endpoint: Endpoint) async throws -> Data {
         guard let urlRequest = try? requestBuilder.request(from: endpoint, for: config.baseUrlString) else {
             throw NetworkServiceError.malformedRequestUrl
         }
