@@ -47,7 +47,7 @@ struct PriceListView: View {
     }
     
     private var errorView: some View {
-        Text("An issue occurred, please try again later.")
+        Text(Strings.issueMessage)
     }
 }
 

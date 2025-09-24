@@ -1,0 +1,46 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "An issue occurred, please try again later." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein Problem ist aufgetreten. Bitte versuchen Sie es später noch einmal."
+          }
+        }
+      }
+    },
+    "Bitcoin prices" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitcoin Preise"
+          }
+        }
+      }
+    },
+    "No prices found." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Preise gefunden."
+          }
+        }
+      }
+    },
+    "Prices for " : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preise für"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
