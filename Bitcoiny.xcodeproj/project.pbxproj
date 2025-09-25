@@ -26,7 +26,6 @@
 		B5906A042E82AD4500B11545 /* Exceptions for "Bitcoiny" folder in "Bitcoiny" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Bitcoiny.xctestplan,
 				Info.plist,
 			);
 			target = B59069C52E82A42600B11545 /* Bitcoiny */;

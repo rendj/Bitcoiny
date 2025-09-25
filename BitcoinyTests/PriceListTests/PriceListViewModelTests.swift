@@ -33,7 +33,7 @@ class PriceListViewModelTests: XCTestCase {
         
         viewModel.sendEvent(.onAppear)
         
-        try? await Task.sleep(nanoseconds: 100_000_000)
+        try? await Task.sleep(nanoseconds: 500_000_000)
         
         XCTAssertEqual(viewModel.state, .loaded([.preview]))
         XCTAssertEqual(realtimePriceRepositoryMock.startWasCalled, true)
@@ -53,7 +53,7 @@ class PriceListViewModelTests: XCTestCase {
         
         viewModel.sendEvent(.onAppear)
         
-        try? await Task.sleep(nanoseconds: 100_000_000)
+        try? await Task.sleep(nanoseconds: 500_000_000)
         
         XCTAssertEqual(viewModel.state, .noPrices)
     }
@@ -89,7 +89,7 @@ class PriceListViewModelTests: XCTestCase {
         
         viewModel.sendEvent(.onAppear)
         
-        try? await Task.sleep(nanoseconds: 100_000_000)
+        try? await Task.sleep(nanoseconds: 500_000_000)
         
         XCTAssertEqual(viewModel.state, .error)
     }

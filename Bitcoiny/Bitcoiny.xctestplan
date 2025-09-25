@@ -1,23 +1,18 @@
 {
   "configurations" : [
     {
-      "id" : "2D77A38E-DDB5-4634-8A7B-DFE60B69ABB6",
-      "name" : "Test Scheme Action",
+      "id" : "D816DFDB-DC20-40B7-B276-45F6A42EFDB9",
+      "name" : "Bitcoiny",
       "options" : {
 
       }
     }
   ],
   "defaultOptions" : {
-    "targetForVariableExpansion" : {
-      "containerPath" : "container:Bitcoiny.xcodeproj",
-      "identifier" : "B59069C52E82A42600B11545",
-      "name" : "Bitcoiny"
-    }
+
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Bitcoiny.xcodeproj",
         "identifier" : "B59069D52E82A42800B11545",
